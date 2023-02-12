@@ -15,27 +15,28 @@ public class TicTacToe {
 
 
     static void play() {
+
         initTable();
         showMap();
         while (true) {
             humanMove();
             showMap();
-            if (checkWin(SIGN_X)) {
+            if (Validation.checkWin(SIGN_X , table)) {
                 System.out.println("U won!");
                 break;
             }
-            if (isTableFull()) {
+            if (Validation.isTableFull(table)) {
                 System.out.println("Table is full. Try again");
                 break;
             }
 
             AIMove();
             showMap();
-            if (checkWin(SIGN_O)) {
+            if (Validation.checkWin(SIGN_O , table)) {
                 System.out.println("U won");
                 break;
             }
-            if (isTableFull()) {
+            if (Validation.isTableFull(table)) {
                 System.out.println("Table is full. Try again");
                 break;
             }
@@ -82,29 +83,6 @@ public class TicTacToe {
             System.out.println();
         }
 
-    }
-
-    static boolean checkWin(char symbol) {
-        for (int i = 0; i < 3; i++) {
-            if ((table[i][0] == symbol && table[i][1] == symbol && table[i][2] == symbol) ||
-                    (table[0][i] == symbol && table[1][0] == symbol && table[2][i] == symbol))
-                return true;
-        }
-        if ((table[0][0] == symbol && table[1][1] == symbol && table[2][2] == symbol) ||
-                (table[2][0] == symbol && table[1][1] == symbol && table[0][2] == symbol))
-            return true;
-
-        return false;
-    }
-
-    static boolean isTableFull() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                if (table[row][col] == SIGN_CELL)
-                    return false;
-            }
-        }
-        return true;
     }
 
     static void AIMove() {
