@@ -1,1 +1,1 @@
-# ticTacToe
+Implemented my first game TicTacToe.
